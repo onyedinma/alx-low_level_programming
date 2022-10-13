@@ -1,8 +1,8 @@
 #include <stdio.h>
 /**
- * A program that prints out a string to stdout
- * and returns zero if successful.
-*/
+ *Description:A program that prints out a string to stdout
+ *Return:returns zero if successful.
+ */
 
 int main(void)
 {
