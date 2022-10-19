@@ -12,12 +12,12 @@
 
 int main(void)
 {
-	unsigned long fib1 = 0, fib2 = 1, sum;
+	unsigned long fibona1 = 0, fibona2 = 1, sum;
 	float total_sum;
 
 	while (1)
 	{
-		sum = fib1 + fib2;
+		sum = fibona1 + fibona2
 
 		if (sum > 4000000)
 			break;
@@ -25,8 +25,8 @@ int main(void)
 		if ((sum % 2) == 0)
 			total_sum += sum;
 
-		fib1 = fib2;
-		fib2 = sum;
+		fibona1 = fibona2;
+		fibona2 = sum;
 	}
 	printf("%.0f\n", total_sum);
 
