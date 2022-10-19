@@ -1,49 +1,39 @@
- #include "holberton.h"
+#include"main.h"
 
 /**
- * print_times_table - function that prints the n times table, starting with 0.
- * @n: input of table n
- * Return: nothing.
- */
+ * print_times_table - prints time table of n
+ *
+ * @n: takes number input
+*/
 
 void print_times_table(int n)
 {
-	int row, col;
-	int mult = 0;
+	int prod, mult, num;
 
 	if (n <= 15 && n >= 0)
 	{
-		for (row = 0; row <= n; row++)
+		for (num = 0; num <= n; ++num)
 		{
-			for (col = 0; col <= n; col++)
+			_putchar(48);
+			for (mult = 1; mult <= n; ++mult)
 			{
-				mult = (row * col);
-				if (mult < 10)
-				{
-					if (col != 0)
-					{
-						_putchar(' ');
-						_putchar(' ');
-						_putchar(' ');
-					}
-					_putchar(mult + '0');
-				}
-				else if (mult < 100)
-				{
+				_putchar(',');
+				_putchar(' ');
+
+				prod = num * mult;
+
+				if (prod <= 9)
 					_putchar(' ');
+				if (prod <= 99)
 					_putchar(' ');
-					_putchar((mult / 10) + '0');
-					_putchar((mult % 10) + '0');
-				}
-				else
+
+				if (prod >= 100)
 				{
-					_putchar(' ');
-					_putchar((mult / 100) + '0');
-					_putchar(((mult % 100) / 10) + '0');
-					_putchar((mult % 10) + '0');
-				}
-				if (col != n)
-					_putchar(',');
+					_putchar((prod / 100) + 48);
+					_putchar((prod / 10) % 10 + 48);
+				} else if (prod <= 99 && prod >= 10)
+					_putchar((prod / 10) + 48);
+				_putchar((prod % 10) + 48);
 			}
 			_putchar('\n');
 		}
