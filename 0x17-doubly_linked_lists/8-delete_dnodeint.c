@@ -8,36 +8,43 @@
  * @index:  index of the node that should be deleted
  * Return: 1 if success and -1 if failed
  */
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index) {
-    dlistint_t *current = *head;
-    unsigned int i;
+int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
+{
+	dlistint_t *temp;
+	unsigned int count;
 
-    if (*head == NULL) {
-        return (-1);
-    }
-
-    if (index == 0) {
-        *head = current->next;
-        if (current->next != NULL) {
-            current->next->prev = NULL;
-        }
-        free(current);
-        return (1);
-    }
-
-    for (i = 0; i < index; i++) {
-        if (current->next == NULL) {
-            return (-1);
-        }
-        current = current->next;
-    }
-
-    current->prev->next = current->next;
-    if (current->next != NULL) {
-        current->next->prev = current->prev;
-    }
-    free(current);
-
-    return (1);
+	if (*head == NULL)
+		return (-1);
+	temp = *head;
+	for (count = 0; temp != NULL && count < index; count++)
+		temp = temp->next;
+	if (temp == NULL)
+		return (-1);
+	if (count == index)
+	{
+		if ((*head)->next == NULL)
+		{
+			*head = NULL;
+			free(temp);
+			return (1);
+		}
+		if (temp == (*head))
+		{
+			(*head) = (*head)->next;
+			(*head)->prev = NULL;
+			free(temp);
+			return (1);
+		}
+		if (temp->next == NULL)
+		{
+			temp->prev->next = NULL;
+			free(temp);
+			return (1);
+		}
+		temp->next->prev = temp->prev;
+		temp->prev->next = temp->next;
+		free(temp);
+		return (1);
+	}
+	return (-1);
 }
-
